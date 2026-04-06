@@ -69,11 +69,38 @@
       padding: 0.5rem 1.25rem; border-radius: 100px;
       text-decoration: none; font-weight: 700; font-size: 0.85rem;
       transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer; border: none;
     }
     .nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(242,169,0,0.4); }
 
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: 0.3s; }
+
+    /* === MOBILE NAV === */
+    .mobile-menu {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(10,10,10,0.98);
+      backdrop-filter: blur(12px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      color: var(--white); text-decoration: none;
+      font-family: var(--font-heading);
+      font-size: 2rem; font-weight: 700;
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-close {
+      position: absolute; top: 1.25rem; right: 3vw;
+      background: none; border: none; color: var(--white);
+      font-size: 2rem; cursor: pointer;
+    }
 
     /* === HERO === */
     .hero {
@@ -81,12 +108,10 @@
       display: flex; align-items: center; justify-content: center;
       text-align: center;
       padding: 8rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
     .hero::before {
-      content: '';
-      position: absolute; inset: 0;
+      content: ''; position: absolute; inset: 0;
       background:
         radial-gradient(ellipse 60% 50% at 50% 60%, rgba(242,169,0,0.15), transparent),
         radial-gradient(ellipse 40% 40% at 80% 30%, rgba(255,60,172,0.08), transparent),
@@ -99,340 +124,326 @@
       background: rgba(242,169,0,0.15);
       border: 1px solid rgba(242,169,0,0.3);
       color: var(--gold);
-      padding: 0.4rem 1rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
       margin-bottom: 1.5rem;
     }
     .hero h1 {
       font-family: var(--font-heading);
       font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -2px;
-      margin-bottom: 1.5rem;
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -2px; margin-bottom: 1.5rem;
     }
     .hero h1 .highlight {
       background: linear-gradient(135deg, var(--gold), var(--orange), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .hero p {
       font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--gray);
-      max-width: 550px;
-      margin: 0 auto 2.5rem;
+      color: var(--gray); max-width: 550px; margin: 0 auto 2.5rem;
     }
     .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn-primary {
-      background: var(--gold);
-      color: var(--black);
-      padding: 0.85rem 2rem;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
+      background: var(--gold); color: var(--black);
+      padding: 0.85rem 2rem; border-radius: 100px;
+      text-decoration: none; font-weight: 700; font-size: 0.95rem;
       transition: transform 0.2s, box-shadow 0.2s;
       display: inline-flex; align-items: center; gap: 0.5rem;
+      cursor: pointer; border: none;
     }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(242,169,0,0.35); }
     .btn-secondary {
-      background: transparent;
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 0.85rem 2rem;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: border-color 0.3s, background 0.3s;
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2); padding: 0.85rem 2rem;
+      border-radius: 100px; text-decoration: none; font-weight: 500;
+      font-size: 0.95rem; transition: border-color 0.3s, background 0.3s;
+      cursor: pointer;
     }
     .btn-secondary:hover { border-color: var(--gold); background: rgba(242,169,0,0.05); }
 
-    /* === SCROLLING TEXT === */
+    /* === MARQUEE === */
     .marquee-section {
-      padding: 2rem 0;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.05);
       border-bottom: 1px solid rgba(255,255,255,0.05);
-      overflow: hidden;
-      background: var(--dark);
+      overflow: hidden; background: var(--dark);
     }
     .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee 25s linear infinite;
+      display: flex; width: max-content; animation: marquee 25s linear infinite;
     }
     .marquee-track span {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--gray);
-      white-space: nowrap;
-      padding: 0 1.5rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 1.1rem; color: var(--gray); white-space: nowrap;
+      padding: 0 1.5rem; text-transform: uppercase; letter-spacing: 3px;
     }
-    .marquee-track span.dot {
-      color: var(--gold);
-      font-size: 1.4rem;
-    }
+    .marquee-track span.dot { color: var(--gold); font-size: 1.4rem; }
     @keyframes marquee {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
 
-    /* === SECTION STYLES === */
+    /* === SECTIONS === */
     section { padding: 6rem 3vw; }
     .section-label {
-      color: var(--gold);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
+      color: var(--gold); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.75rem;
     }
     .section-title {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      font-weight: 800;
-      letter-spacing: -1.5px;
-      line-height: 1.1;
-      margin-bottom: 1rem;
+      font-family: var(--font-heading); font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 1rem;
     }
     .section-desc {
-      color: var(--gray);
-      font-size: 1.05rem;
-      max-width: 550px;
-      line-height: 1.7;
+      color: var(--gray); font-size: 1.05rem; max-width: 550px; line-height: 1.7;
     }
 
     /* === ABOUT === */
     .about { background: var(--black); }
     .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      margin-top: 3rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem;
     }
     .about-image {
       background: linear-gradient(135deg, var(--gold), var(--orange));
-      aspect-ratio: 4/5;
-      border-radius: 20px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      aspect-ratio: 4/5; border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
     }
     .about-image-text {
-      font-family: var(--font-heading);
-      font-size: 6rem;
-      font-weight: 800;
-      color: rgba(0,0,0,0.2);
-      text-align: center;
-      line-height: 1;
+      font-family: var(--font-heading); font-size: 6rem;
+      font-weight: 800; color: rgba(0,0,0,0.2);
     }
     .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
     .about-tags span {
       background: var(--dark2);
       border: 1px solid rgba(255,255,255,0.08);
-      padding: 0.4rem 1rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      color: var(--gray);
+      padding: 0.4rem 1rem; border-radius: 100px;
+      font-size: 0.8rem; color: var(--gray);
     }
 
-    /* === FEATURED DISHES === */
+    /* === DISHES === */
     .dishes { background: var(--dark); }
     .dishes-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
     }
     .dish-card {
-      background: var(--dark2);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 20px;
-      padding: 2rem;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
+      background: var(--dark2); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px; padding: 2rem; transition: 0.3s; cursor: pointer;
+      position: relative; overflow: hidden;
     }
     .dish-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, var(--gold), var(--orange), var(--pink));
-      opacity: 0;
-      transition: opacity 0.3s;
+      opacity: 0; transition: opacity 0.3s;
     }
     .dish-card:hover { transform: translateY(-6px); border-color: rgba(242,169,0,0.2); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
     .dish-card:hover::before { opacity: 1; }
-    .dish-emoji {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-    .dish-name {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-    .dish-desc {
-      color: var(--gray);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 1.25rem;
-    }
+    .dish-card.selected { border-color: var(--gold); background: rgba(242,169,0,0.05); }
+    .dish-card.selected::before { opacity: 1; }
+    .dish-emoji { font-size: 3rem; margin-bottom: 1rem; display: block; }
+    .dish-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .dish-desc { color: var(--gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem; }
     .dish-footer { display: flex; justify-content: space-between; align-items: center; }
-    .dish-price {
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--gold);
-    }
+    .dish-price { font-weight: 700; font-size: 1.2rem; color: var(--gold); }
     .dish-tag {
-      font-size: 0.7rem;
-      color: var(--green);
+      font-size: 0.7rem; color: var(--green);
       background: rgba(45,198,83,0.1);
-      padding: 0.25rem 0.75rem;
-      border-radius: 100px;
-      font-weight: 500;
+      padding: 0.25rem 0.75rem; border-radius: 100px; font-weight: 500;
     }
 
     /* === STATS === */
     .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      text-align: center;
-      padding: 4rem 3vw;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; text-align: center; padding: 4rem 3vw;
       border-top: 1px solid rgba(255,255,255,0.05);
       border-bottom: 1px solid rgba(255,255,255,0.05);
       background: var(--black);
     }
     .stat-number {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3.5rem);
       font-weight: 800;
       background: linear-gradient(135deg, var(--gold), var(--orange));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .stat-label { color: var(--gray); font-size: 0.9rem; margin-top: 0.5rem; }
 
-    /* === MENU HIGHLIGHTS === */
+    /* === MENU === */
     .menu-section { background: var(--black); }
     .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-    .menu-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 1.25rem 0;
+
+    /* Interactive menu item with add button */
+    .menu-interactive {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 1.25rem;
       border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
     }
-    .menu-item-name {
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
+    .menu-interactive:hover {
+      background: var(--dark2);
+      border-color: rgba(242,169,0,0.15);
     }
-    .menu-item-desc {
+    .menu-interactive.selected {
+      background: rgba(242,169,0,0.08);
+      border-color: rgba(242,169,0,0.3);
+    }
+    .menu-interactive-left { flex: 1; }
+    .menu-interactive-name { font-weight: 700; font-size: 1rem; margin-bottom: 0.15rem; }
+    .menu-interactive-desc { color: var(--gray); font-size: 0.82rem; }
+    .menu-interactive-right { display: flex; align-items: center; gap: 0.75rem; margin-left: 1rem; flex-shrink: 0; }
+    .menu-interactive-price { font-weight: 700; color: var(--gold); white-space: nowrap; font-size: 1.05rem; }
+    .qty-control {
+      display: flex; align-items: center; gap: 0; border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px; overflow: hidden; visibility: hidden; opacity: 0;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+    .menu-interactive.selected .qty-control { visibility: visible; opacity: 1; }
+    .qty-btn {
+      background: var(--dark); border: none; color: var(--white);
+      width: 34px; height: 34px; cursor: pointer; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .qty-btn:hover { background: rgba(242,169,0,0.2); }
+    .qty-num {
+      min-width: 30px; text-align: center; font-weight: 700; font-size: 0.9rem;
+    }
+
+    /* === ORDER CART === */
+    .cart-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 2000;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .cart-overlay.active { opacity: 1; pointer-events: all; }
+    .cart-panel {
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: min(420px, 90vw);
+      background: var(--dark);
+      z-index: 2001;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex; flex-direction: column;
+      border-left: 1px solid rgba(242,169,0,0.15);
+    }
+    .cart-panel.active { transform: translateX(0); }
+    .cart-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .cart-header h3 {
+      font-family: var(--font-heading);
+      font-weight: 800; font-size: 1.3rem;
+    }
+    .cart-close {
+      background: none; border: none; color: var(--gray);
+      font-size: 1.8rem; cursor: pointer;
+      transition: color 0.2s;
+    }
+    .cart-close:hover { color: var(--white); }
+    .cart-items {
+      flex: 1; overflow-y: auto; padding: 1rem 1.5rem;
+    }
+    .cart-empty {
+      text-align: center; padding: 3rem 1rem;
       color: var(--gray);
-      font-size: 0.85rem;
     }
-    .menu-item-price {
-      font-weight: 700;
-      color: var(--gold);
-      white-space: nowrap;
-      font-size: 1.05rem;
+    .cart-empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .cart-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .cart-item-qty { color: var(--gray); font-size: 0.8rem; }
+    .cart-item-right { display: flex; align-items: center; gap: 0.75rem; }
+    .cart-item-price { font-weight: 700; color: var(--gold); white-space: nowrap; }
+    .cart-item-remove {
+      background: none; border: none; color: var(--gray);
+      cursor: pointer; font-size: 1.1rem; transition: color 0.2s;
+      padding: 0.25rem;
+    }
+    .cart-item-remove:hover { color: var(--orange); }
+    .cart-footer {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .cart-total {
+      display: flex; justify-content: space-between;
+      font-family: var(--font-heading);
+      font-weight: 700; font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .cart-total-price { color: var(--gold); }
+    .cart-checkout-btn {
+      width: 100%; background: var(--gold); color: var(--black);
+      padding: 0.95rem; border-radius: 100px; border: none;
+      font-weight: 700; font-size: 1rem;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cart-checkout-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(242,169,0,0.35);
+    }
+
+    /* Cart badge on nav */
+    .cart-badge {
+      position: relative; display: inline-flex;
+    }
+    .cart-badge::after {
+      content: attr(data-count);
+      position: absolute; top: -6px; right: -8px;
+      background: var(--orange); color: white;
+      font-size: 0.65rem; font-weight: 700;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.5);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .cart-badge.has-items::after {
+      opacity: 1; transform: scale(1);
     }
 
     /* === GALLERY === */
     .gallery { background: var(--dark); }
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(2, 200px);
-      gap: 1rem;
-      margin-top: 3rem;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 200px); gap: 1rem; margin-top: 3rem;
     }
     .gallery-item {
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      transition: transform 0.3s;
-      cursor: pointer;
+      border-radius: 16px; overflow: hidden;
+      position: relative; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 2.5rem; transition: transform 0.3s; cursor: pointer;
     }
     .gallery-item:hover { transform: scale(1.03); }
-    .gallery-item:nth-child(1) {
-      grid-column: span 2;
-      background: linear-gradient(135deg, #1a0a00, var(--dark2));
-      border: 1px solid rgba(242,169,0,0.1);
-    }
-    .gallery-item:nth-child(2) {
-      background: linear-gradient(135deg, #0a1a0a, var(--dark2));
-      border: 1px solid rgba(45,198,83,0.1);
-    }
-    .gallery-item:nth-child(3) {
-      background: linear-gradient(135deg, #0a0a1a, var(--dark2));
-      border: 1px solid rgba(255,60,172,0.1);
-    }
-    .gallery-item:nth-child(4) {
-      background: linear-gradient(135deg, #1a1a0a, var(--dark2));
-      border: 1px solid rgba(255,107,53,0.1);
-    }
-    .gallery-item:nth-child(5) {
-      grid-column: span 2;
-      background: linear-gradient(135deg, #0a0a1a, var(--dark2));
-      border: 1px solid rgba(242,169,0,0.1);
-    }
-    .gallery-item:nth-child(6) {
-      background: linear-gradient(135deg, #1a0a0a, var(--dark2));
-      border: 1px solid rgba(255,60,172,0.1);
-    }
+    .gallery-item:nth-child(1) { grid-column: span 2; background: linear-gradient(135deg, #1a0a00, var(--dark2)); border: 1px solid rgba(242,169,0,0.1); }
+    .gallery-item:nth-child(2) { background: linear-gradient(135deg, #0a1a0a, var(--dark2)); border: 1px solid rgba(45,198,83,0.1); }
+    .gallery-item:nth-child(3) { background: linear-gradient(135deg, #0a0a1a, var(--dark2)); border: 1px solid rgba(255,60,172,0.1); }
+    .gallery-item:nth-child(4) { background: linear-gradient(135deg, #1a1a0a, var(--dark2)); border: 1px solid rgba(255,107,53,0.1); }
+    .gallery-item:nth-child(5) { grid-column: span 2; background: linear-gradient(135deg, #0a0a1a, var(--dark2)); border: 1px solid rgba(242,169,0,0.1); }
+    .gallery-item:nth-child(6) { background: linear-gradient(135deg, #1a0a0a, var(--dark2)); border: 1px solid rgba(255,60,172,0.1); }
 
     /* === REVIEWS === */
     .reviews { background: var(--black); }
     .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
     }
     .review-card {
-      background: var(--dark2);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 20px;
-      padding: 2rem;
+      background: var(--dark2); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px; padding: 2rem;
     }
     .review-stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem; letter-spacing: 2px; }
-    .review-text {
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-      color: rgba(250,250,250,0.85);
-    }
-    .review-author {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
+    .review-text { font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem; color: rgba(250,250,250,0.85); }
+    .review-author { display: flex; align-items: center; gap: 0.75rem; }
     .review-avatar {
-      width: 40px; height: 40px;
-      border-radius: 50%;
+      width: 40px; height: 40px; border-radius: 50%;
       background: linear-gradient(135deg, var(--gold), var(--green));
       display: flex; align-items: center; justify-content: center;
       font-weight: 700; font-size: 0.9rem; color: var(--black);
@@ -440,127 +451,167 @@
     .review-name { font-weight: 700; font-size: 0.9rem; }
     .review-handle { color: var(--gray); font-size: 0.8rem; }
 
-    /* === VISIT US / CTA === */
+    /* === VISIT === */
     .visit {
-      background: var(--dark);
-      text-align: center;
-      padding: 8rem 3vw;
-      position: relative;
+      background: var(--dark); text-align: center;
+      padding: 8rem 3vw; position: relative;
     }
     .visit::before {
-      content: '';
-      position: absolute; inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(242,169,0,0.08), transparent);
       pointer-events: none;
     }
     .visit-content { position: relative; z-index: 1; }
     .visit h2 {
-      font-family: var(--font-heading);
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -2px;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
+      font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 1.5rem;
     }
     .visit-info {
       display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
       margin-top: 3rem; margin-bottom: 3rem;
     }
     .visit-card {
-      background: var(--dark2);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px;
-      padding: 2rem 2.5rem;
-      text-align: left;
+      background: var(--dark2); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 2rem 2.5rem; text-align: left;
     }
     .visit-card-label {
-      color: var(--gold);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
+      color: var(--gold); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem;
     }
     .visit-card-value { font-size: 1.05rem; line-height: 1.7; }
 
     /* === FOOTER === */
     footer {
-      background: var(--black);
-      border-top: 1px solid rgba(255,255,255,0.06);
+      background: var(--black); border-top: 1px solid rgba(255,255,255,0.06);
       padding: 3rem 3vw;
     }
     .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
     }
     .footer-logo {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 1.3rem;
-      color: var(--gold);
+      font-family: var(--font-heading); font-weight: 800; font-size: 1.3rem; color: var(--gold);
     }
     .footer-logo span { color: var(--green); }
     .footer-socials { display: flex; gap: 1rem; }
     .footer-socials a {
-      width: 40px; height: 40px;
-      border-radius: 50%;
+      width: 40px; height: 40px; border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.1);
       display: flex; align-items: center; justify-content: center;
-      color: var(--gray);
-      text-decoration: none;
-      font-size: 0.85rem;
+      color: var(--gray); text-decoration: none; font-size: 0.85rem;
       transition: border-color 0.3s, color 0.3s, background 0.3s;
     }
     .footer-socials a:hover { border-color: var(--gold); color: var(--gold); background: rgba(242,169,0,0.05); }
     .footer-copy { color: var(--gray); font-size: 0.8rem; }
 
-    /* === ANIMATIONS === */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+    /* === MODAL === */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000; display: none;
+      align-items: center; justify-content: center;
+      padding: 1rem;
     }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--dark2); border-radius: 24px;
+      border: 1px solid rgba(242,169,0,0.15);
+      width: min(520px, 100%);
+      max-height: 90vh; overflow-y: auto;
+      padding: 2.5rem;
+      transform: translateY(30px); opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+    }
+    .modal-overlay.active .modal { transform: translateY(0); opacity: 1; }
+    .modal-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 2rem;
+    }
+    .modal-title {
+      font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem;
+    }
+    .modal-close {
+      background: none; border: none; color: var(--gray);
+      font-size: 1.8rem; cursor: pointer; transition: color 0.2s;
+      padding: 0.25rem;
+    }
+    .modal-close:hover { color: var(--white); }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block; font-size: 0.85rem; font-weight: 600;
+      color: var(--gray); margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 0.85rem 1rem;
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; color: var(--white);
+      font-family: var(--font-body); font-size: 0.95rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .form-submit {
+      width: 100%; background: var(--gold); color: var(--black);
+      padding: 0.95rem; border-radius: 100px; border: none;
+      font-weight: 700; font-size: 1rem; cursor: pointer;
+      margin-top: 0.75rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .form-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(242,169,0,0.35);
     }
 
-    /* === MOBILE NAV === */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(10,10,10,0.98);
-      backdrop-filter: blur(12px);
-      z-index: 999;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
+    /* === ORDER SUCCESS === */
+    .order-confirm-modal .modal { text-align: center; }
+    .order-confirm-icon { font-size: 4rem; margin-bottom: 1rem; }
+    .order-confirm-text { color: var(--gray); margin-bottom: 1.5rem; line-height: 1.6; }
+    .order-confirm-summary {
+      text-align: left;
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
     }
-    .mobile-menu.active { display: flex; }
-    .mobile-menu a {
-      color: var(--white);
-      text-decoration: none;
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      font-weight: 700;
-      transition: color 0.3s;
+    .order-confirm-item {
+      display: flex; justify-content: space-between;
+      padding: 0.4rem 0; font-size: 0.9rem;
     }
-    .mobile-menu a:hover { color: var(--gold); }
-    .mobile-close {
-      position: absolute;
-      top: 1.25rem;
-      right: 3vw;
-      background: none;
-      border: none;
-      color: var(--white);
-      font-size: 2rem;
-      cursor: pointer;
+    .order-confirm-item span:last-child { color: var(--gold); font-weight: 700; }
+    .order-confirm-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 0.5rem 0; }
+    .order-confirm-total {
+      display: flex; justify-content: space-between;
+      font-weight: 700; font-size: 1.15rem;
     }
+    .order-confirm-total span:last-child { color: var(--gold); }
+
+    /* === TOAST === */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
+      background: var(--dark2); border: 1px solid rgba(242,169,0,0.3);
+      border-radius: 100px; padding: 0.75rem 1.5rem;
+      font-size: 0.9rem; z-index: 3000;
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* === ANIMATIONS === */
+    .fade-up {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
     /* === RESPONSIVE === */
     @media (max-width: 768px) {
@@ -568,15 +619,16 @@
       .hamburger { display: flex; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .about-image { max-height: 300px; }
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-      }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
       .gallery-item:nth-child(1) { grid-column: span 2; }
       .gallery-item:nth-child(5) { grid-column: span 2; }
       .visit-info { flex-direction: column; align-items: center; }
       .footer-inner { flex-direction: column; text-align: center; }
       section { padding: 4rem 5vw; }
+      .form-row { grid-template-columns: 1fr; }
+      .modal { padding: 1.5rem; }
+      .menu-interactive { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .menu-interactive-right { margin-left: 0; }
     }
   </style>
 </head>
@@ -592,7 +644,8 @@
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#visit">Visit</a></li>
     </ul>
-    <a href="#menu" class="nav-cta">Order Now</a>
+    <button class="nav-cta cart-badge" data-count="0" onclick="openCart()">&#128218; Order Cart
+    </button>
     <button class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('active')">
       <span></span><span></span><span></span>
     </button>
@@ -615,8 +668,8 @@
       <h1>Where <span class="highlight">Lagos</span> Meets <span class="highlight">London</span></h1>
       <p>Afro-Nigerian flavours reimagined for the culture. Bold jollof, fire suya, plantain perfection and UK soul — all on one plate.</p>
       <div class="hero-buttons">
-        <a href="#menu" class="btn-primary">View Menu &#10140;</a>
-        <a href="#visit" class="btn-secondary">Book a Table</a>
+        <button class="btn-primary" onclick="scrollToSection('#menu')">View Menu & Order &#10140;</button>
+        <button class="btn-secondary" onclick="openReservation()">Book a Table</button>
       </div>
     </div>
   </section>
@@ -624,22 +677,14 @@
   <!-- MARQUEE -->
   <div class="marquee-section">
     <div class="marquee-track">
-      <span>Jollof Wars Winner</span><span class="dot">•</span>
-      <span>Lagos x London</span><span class="dot">•</span>
-      <span>Fire Suya</span><span class="dot">•</span>
-      <span>Fresh Plantain</span><span class="dot">•</span>
-      <span>Afro-Fusion Kitchen</span><span class="dot">•</span>
-      <span>Peckham's Finest</span><span class="dot">•</span>
-      <span>Gen Z Approved</span><span class="dot">•</span>
-      <span>Wahala-Free Dining</span><span class="dot">•</span>
-      <span>Jollof Wars Winner</span><span class="dot">•</span>
-      <span>Lagos x London</span><span class="dot">•</span>
-      <span>Fire Suya</span><span class="dot">•</span>
-      <span>Fresh Plantain</span><span class="dot">•</span>
-      <span>Afro-Fusion Kitchen</span><span class="dot">•</span>
-      <span>Peckham's Finest</span><span class="dot">•</span>
-      <span>Gen Z Approved</span><span class="dot">•</span>
-      <span>Wahala-Free Dining</span><span class="dot">•</span>
+      <span>Jollof Wars Winner</span><span class="dot">•</span><span>Lagos x London</span><span class="dot">•</span>
+      <span>Fire Suya</span><span class="dot">•</span><span>Fresh Plantain</span><span class="dot">•</span>
+      <span>Afro-Fusion Kitchen</span><span class="dot">•</span><span>Peckham's Finest</span><span class="dot">•</span>
+      <span>Gen Z Approved</span><span class="dot">•</span><span>Wahala-Free Dining</span><span class="dot">•</span>
+      <span>Jollof Wars Winner</span><span class="dot">•</span><span>Lagos x London</span><span class="dot">•</span>
+      <span>Fire Suya</span><span class="dot">•</span><span>Fresh Plantain</span><span class="dot">•</span>
+      <span>Afro-Fusion Kitchen</span><span class="dot">•</span><span>Peckham's Finest</span><span class="dot">•</span>
+      <span>Gen Z Approved</span><span class="dot">•</span><span>Wahala-Free Dining</span><span class="dot">•</span>
     </div>
   </div>
 
@@ -694,9 +739,9 @@
         </div>
       </div>
       <div class="dish-card fade-up">
-        <span class="dish-emoji">&#127822;</span>
+        <span class="dish-emoji">&#127830;</span>
         <div class="dish-name">Jollof Arancini</div>
-        <div class="dish-desc">Crispy jollof rice balls with mozzarella centre, drizzled with scotch bonnet aioli. Banger.</div>
+        <div class="dish-desc">Crispy jollof rice balls with mozzarella centre, scotch bonnet aioli. Banger.</div>
         <div class="dish-footer">
           <span class="dish-price">&#163;8.50</span>
           <span class="dish-tag">New Drop</span>
@@ -705,7 +750,7 @@
       <div class="dish-card fade-up">
         <span class="dish-emoji">&#129370;</span>
         <div class="dish-name">Egusi Risotto</div>
-        <div class="dish-desc">Creamy melon seed risotto, smoked fish, spinach and parmesan. Italian technique, Nigerian heart.</div>
+        <div class="dish-desc">Creamy melon seed risotto, smoked fish, spinach and parmesan.</div>
         <div class="dish-footer">
           <span class="dish-price">&#163;16.00</span>
           <span class="dish-tag">Chef's Fave</span>
@@ -716,88 +761,227 @@
 
   <!-- STATS -->
   <div class="stats">
-    <div class="fade-up">
-      <div class="stat-number">50K+</div>
-      <div class="stat-label">Plates Served</div>
-    </div>
-    <div class="fade-up">
-      <div class="stat-number">4.9</div>
-      <div class="stat-label">Google Rating &#9733;</div>
-    </div>
-    <div class="fade-up">
-      <div class="stat-number">2M+</div>
-      <div class="stat-label">TikTok Views</div>
-    </div>
-    <div class="fade-up">
-      <div class="stat-number">12</div>
-      <div class="stat-label">Signature Drinks</div>
-    </div>
+    <div class="fade-up"><div class="stat-number">50K+</div><div class="stat-label">Plates Served</div></div>
+    <div class="fade-up"><div class="stat-number">4.9</div><div class="stat-label">Google Stars</div></div>
+    <div class="fade-up"><div class="stat-number">2M+</div><div class="stat-label">TikTok Views</div></div>
+    <div class="fade-up"><div class="stat-number">12</div><div class="stat-label">Signature Drinks</div></div>
   </div>
 
-  <!-- MENU -->
+  <!-- INTERACTIVE MENU -->
   <section class="menu-section" id="menu">
     <div class="section-label fade-up">The Menu</div>
-    <h2 class="section-title fade-up">What's the Vibe Today?</h2>
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <h2 class="section-title fade-up">Tap to Select Your Order</h2>
+      <button class="btn-primary fade-up cart-badge" data-count="0" onclick="openCart()">&#128723; View Order</button>
+    </div>
+    <p class="section-desc fade-up">Tap any item below to add it. Adjust quantities in your cart.</p>
 
     <div class="menu-grid">
+
+      <!-- MAINS -->
       <div>
         <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 1rem; color: var(--gold);">Mains</h3>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Classic Suya Platter</div><div class="menu-item-desc">Fire-pepper beef, onions, tomatoes & fresh plantain</div></div>
-          <div class="menu-item-price">&#163;13.50</div>
+
+        <div class="menu-interactive fade-up" data-name="Classic Suya Platter" data-price="13.50" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Classic Suya Platter</div>
+            <div class="menu-interactive-desc">Fire-pepper beef, onions, tomatoes & fresh plantain</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;13.50</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Jollof Rice & Chicken</div><div class="menu-item-desc">Smoky firewood jollof, grilled chicken breast</div></div>
-          <div class="menu-item-price">&#163;14.50</div>
+
+        <div class="menu-interactive fade-up" data-name="Jollof Rice & Chicken" data-price="14.50" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Jollof Rice & Chicken</div>
+            <div class="menu-interactive-desc">Smoky firewood jollof, grilled chicken breast</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;14.50</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Asun (Spicy Goat)</div><div class="menu-item-desc">Chilled grilled peppered goat, plantain & salad</div></div>
-          <div class="menu-item-price">&#163;17.00</div>
+
+        <div class="menu-interactive fade-up" data-name="Asun (Spicy Goat)" data-price="17.00" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Asun (Spicy Goat)</div>
+            <div class="menu-interactive-desc">Chilled grilled peppered goat, plantain & salad</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;17.00</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Egusi Risotto</div><div class="menu-item-desc">Melon seed risotto, smoked fish, parmesan</div></div>
-          <div class="menu-item-price">&#163;16.00</div>
+
+        <div class="menu-interactive fade-up" data-name="Egusi Risotto" data-price="16.00" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Egusi Risotto</div>
+            <div class="menu-interactive-desc">Melon seed risotto, smoked fish, parmesan</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;16.00</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Amala & Ewedu</div><div class="menu-item-desc">Yam-based amala, ewedu soup, gbegiri, assorted meats</div></div>
-          <div class="menu-item-price">&#163;15.00</div>
+
+        <div class="menu-interactive fade-up" data-name="Amala & Ewedu" data-price="15.00" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Amala & Ewedu</div>
+            <div class="menu-interactive-desc">Yam-based amala, ewedu soup, gbegiri, assorted meats</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;15.00</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Chapman Bowl (Vegan)</div><div class="menu-item-desc">Plantain, black beans, jollof quinoa, avocado & greens</div></div>
-          <div class="menu-item-price">&#163;12.50</div>
+
+        <div class="menu-interactive fade-up" data-name="Chapman Bowl (Vegan)" data-price="12.50" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Chapman Bowl (V)</div>
+            <div class="menu-interactive-desc">Plantain, black beans, jollof quinoa, avocado & greens</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;12.50</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- SIDES & DRINKS -->
       <div>
         <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 1rem; color: var(--gold);">Small Bites & Sides</h3>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Jollof Arancini</div><div class="menu-item-desc">Crispy jollof rice balls, scotch bonnet aioli</div></div>
-          <div class="menu-item-price">&#163;8.50</div>
+
+        <div class="menu-interactive fade-up" data-name="Jollof Arancini" data-price="8.50" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Jollof Arancini</div>
+            <div class="menu-interactive-desc">Crispy jollof rice balls, scotch bonnet aioli</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;8.50</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Suya-Spiced Wings</div><div class="menu-item-desc">8 wings, dry-rubbed suya seasoning, ranch dip</div></div>
-          <div class="menu-item-price">&#163;9.50</div>
+
+        <div class="menu-interactive fade-up" data-name="Suya-Spiced Wings" data-price="9.50" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Suya-Spiced Wings</div>
+            <div class="menu-interactive-desc">8 wings, dry-rubbed suya seasoning, ranch dip</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;9.50</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Puff Puff (x6)</div><div class="menu-item-desc">Golden fried dough balls, condensed milk drizzle</div></div>
-          <div class="menu-item-price">&#163;5.50</div>
+
+        <div class="menu-interactive fade-up" data-name="Puff Puff (x6)" data-price="5.50" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Puff Puff (x6)</div>
+            <div class="menu-interactive-desc">Golden fried dough balls, condensed milk drizzle</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;5.50</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Plantain Loaded Fries</div><div class="menu-item-desc">Sweet plantain fries, pepper sauce, pickled chilli</div></div>
-          <div class="menu-item-price">&#163;7.00</div>
+
+        <div class="menu-interactive fade-up" data-name="Plantain Loaded Fries" data-price="7.00" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Plantain Loaded Fries</div>
+            <div class="menu-interactive-desc">Sweet plantain fries, pepper sauce, pickled chilli</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;7.00</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
 
         <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 1rem; color: var(--gold); margin-top: 1.5rem;">Drinks</h3>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Classic Chapman</div><div class="menu-item-desc">Fanta, Sprite, blackcurrant, cucumber, lemon</div></div>
-          <div class="menu-item-price">&#163;5.00</div>
+
+        <div class="menu-interactive fade-up" data-name="Classic Chapman" data-price="5.00" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Classic Chapman</div>
+            <div class="menu-interactive-desc">Fanta, Sprite, blackcurrant, cucumber, lemon</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;5.00</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Zobo Spritz</div><div class="menu-item-desc">Hibiscus zobo infusion, sparkling wine & ginger</div></div>
-          <div class="menu-item-price">&#163;9.00</div>
+
+        <div class="menu-interactive fade-up" data-name="Zobo Spritz" data-price="9.00" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Zobo Spritz</div>
+            <div class="menu-interactive-desc">Hibiscus zobo infusion, sparkling wine & ginger</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;9.00</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
-        <div class="menu-item fade-up">
-          <div><div class="menu-item-name">Fresh Palm Wine</div><div class="menu-item-desc">Imported, sweet & lightly effervescent</div></div>
-          <div class="menu-item-price">&#163;6.50</div>
+
+        <div class="menu-interactive fade-up" data-name="Fresh Palm Wine" data-price="6.50" onclick="toggleMenuItem(this)">
+          <div class="menu-interactive-left">
+            <div class="menu-interactive-name">Fresh Palm Wine</div>
+            <div class="menu-interactive-desc">Imported, sweet & lightly effervescent</div>
+          </div>
+          <div class="menu-interactive-right">
+            <div class="menu-interactive-price">&#163;6.50</div>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+              <span class="qty-num">1</span>
+              <button class="qty-btn" onclick="event.stopPropagation();changeQty(this,1)">+</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -840,7 +1024,7 @@
       </div>
       <div class="review-card fade-up">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div class="review-text">"Brought my white mates here and now they're ordering chapman by name. NAJA really changed the game. The egusi risotto was next level."</div>
+        <div class="review-text">"Brought my white mates here and now they're ordering chapman by name. NAJA changed the game. The egusi risotto is next level."</div>
         <div class="review-author">
           <div class="review-avatar">S</div>
           <div><div class="review-name">Segun J.</div><div class="review-handle">@segun.peckham</div></div>
@@ -849,7 +1033,7 @@
     </div>
   </section>
 
-  <!-- VISIT / CTA -->
+  <!-- VISIT -->
   <section class="visit" id="visit">
     <div class="visit-content">
       <div class="section-label fade-up">Come Through</div>
@@ -861,14 +1045,14 @@
         </div>
         <div class="visit-card fade-up">
           <div class="visit-card-label">Hours</div>
-          <div class="visit-card-value">Mon - Thu: 12:00 - 22:00<br>Fri - Sat: 12:00 - 00:00<br>Sunday: 12:00 - 21:00</div>
+          <div class="visit-card-value">Mon-Thu: 12:00 - 22:00<br>Fri-Sat: 12:00 - 00:00<br>Sunday: 12:00 - 21:00</div>
         </div>
         <div class="visit-card fade-up">
           <div class="visit-card-label">Contact</div>
           <div class="visit-card-value">020 7948 1234<br>hello@najakitchen.co.uk</div>
         </div>
       </div>
-      <a href="#" class="btn-primary fade-up" style="font-size: 1.1rem; padding: 1rem 3rem;">Book a Table &#10140;</a>
+      <button class="btn-primary fade-up" style="font-size: 1.1rem; padding: 1rem 3rem;" onclick="openReservation()">Reserve a Table &#10140;</button>
     </div>
   </section>
 
@@ -882,21 +1066,302 @@
         <a href="#" title="Twitter/X">&#9264;</a>
         <a href="#" title="Spotify">&#127925;</a>
       </div>
-      <div class="footer-copy">&copy; 2026 NAJA Kitchen. All rights reserved.</div>
+      <div class="footer-copy">&#169; 2026 NAJA Kitchen. All rights reserved.</div>
     </div>
   </footer>
 
-  <!-- SCROLL ANIMATION JS -->
+  <!-- RESERVATION MODAL -->
+  <div class="modal-overlay" id="reservation-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Book a Table</div>
+        <button class="modal-close" onclick="closeReservation()">&times;</button>
+      </div>
+      <form onsubmit="submitReservation(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="res-fname" placeholder="Kemi" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="res-lname" placeholder="Adeyemi" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="res-phone" placeholder="07700 123 456" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="res-email" placeholder="you@email.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="res-date" required>
+          </div>
+          <div class="form-group">
+            <label>Time</label>
+            <select id="res-time" required>
+              <option value="">Select time</option>
+              <option>12:00</option>
+              <option>13:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>17:00</option>
+              <option>18:00</option>
+              <option>19:00</option>
+              <option>20:00</option>
+              <option>21:00</option>
+              <option>22:00</option>
+              <option>23:00</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Number of Guests</label>
+          <select id="res-guests" required>
+            <option value="">How many?</option>
+            <option>1 person</option>
+            <option>2 people</option>
+            <option>3 people</option>
+            <option>4 people</option>
+            <option>5 people</option>
+            <option>6 people</option>
+            <option>7+ people (Private Dining)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Special Requests (optional)</label>
+          <textarea id="res-notes" rows="3" placeholder="Allergies, celebrations, outdoor seating..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Confirm Reservation &#10140;</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- RESERVATION CONFIRMATION MODAL -->
+  <div class="modal-overlay" id="reservation-confirm">
+    <div class="modal" style="text-align: center;">
+      <div style="font-size: 4rem; margin-bottom: 1rem;">&#9989;</div>
+      <div class="modal-title" style="margin-bottom: 0.75rem;">You're Booked!</div>
+      <p class="order-confirm-text" id="confirm-text">We've saved your table. See you at NAJA Kitchen.</p>
+      <button class="form-submit" onclick="closeConfirm()" style="max-width: 300px; margin: 0 auto;">Done &#10140;</button>
+    </div>
+  </div>
+
+  <!-- ORDER CART PANEL -->
+  <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+  <div class="cart-panel" id="cart-panel">
+    <div class="cart-header">
+      <h3>Your Order</h3>
+      <button class="cart-close" onclick="closeCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <div class="cart-empty" id="cart-empty">
+        <div class="cart-empty-icon">&#128218;</div>
+        <p>Your order is empty.</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">Tap menu items to add your order!</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cart-footer" style="display: none;">
+      <div class="cart-total">
+        <span>Total</span>
+        <span class="cart-total-price" id="cart-total-price">&#163;0.00</span>
+      </div>
+      <button class="cart-checkout-btn" onclick="checkoutOrder()">Place Order via WhatsApp &#128242;</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <span id="toast-text"></span>
+  </div>
+
   <script>
+    // === SCROLL ANIMATIONS ===
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // === SCROLL TO SECTION ===
+    function scrollToSection(selector) {
+      document.querySelector(selector).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // === TOAST ===
+    let toastTimer;
+    function showToast(msg) {
+      clearTimeout(toastTimer);
+      const t = document.getElementById('toast');
+      document.getElementById('toast-text').textContent = msg;
+      t.classList.add('show');
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // === CART ===
+    let cart = {};
+
+    function toggleMenuItem(el) {
+      const name = el.dataset.name;
+      const price = parseFloat(el.dataset.price);
+
+      if (el.classList.contains('selected')) {
+        el.classList.remove('selected');
+        delete cart[name];
+        showToast('Removed ' + name);
+      } else {
+        el.classList.add('selected');
+        cart[name] = { price: price, qty: 1 };
+        showToast('Added ' + name);
+      }
+      updateCart();
+    }
+
+    function changeQty(btn, delta) {
+      const row = btn.closest('.menu-interactive');
+      const name = row.dataset.name;
+      if (!cart[name]) return;
+      cart[name].qty = Math.max(1, cart[name].qty + delta);
+      row.querySelector('.qty-num').textContent = cart[name].qty;
+      updateCart();
+    }
+
+    function updateCart() {
+      const entries = Object.entries(cart);
+      const totalItems = entries.reduce((s, [, v]) => s + v.qty, 0);
+      const totalPrice = entries.reduce((s, [, v]) => s + v.price * v.qty, 0);
+
+      // Update all nav badges
+      document.querySelectorAll('.cart-badge').forEach(b => {
+        b.setAttribute('data-count', totalItems);
+        if (totalItems > 0) b.classList.add('has-items');
+        else b.classList.remove('has-items');
+      });
+
+      // Render cart items
+      const container = document.getElementById('cart-items');
+      const emptyEl = document.getElementById('cart-empty');
+      const footerEl = document.getElementById('cart-footer');
+      const priceEl = document.getElementById('cart-total-price');
+
+      // Clear existing
+      container.innerHTML = '';
+
+      if (entries.length === 0) {
+        container.innerHTML = '<div class="cart-empty" id="cart-empty"><div class="cart-empty-icon">&#128218;</div><p>Your order is empty.</p><p style="font-size: 0.8rem; margin-top: 0.5rem;">Tap menu items to add your order!</p></div>';
+        footerEl.style.display = 'none';
+      } else {
+        entries.forEach(([name, item]) => {
+          const div = document.createElement('div');
+          div.className = 'cart-item';
+          div.innerHTML = `
+            <div class="cart-item-info">
+              <div class="cart-item-name">${name}</div>
+              <div class="cart-item-qty">x${item.qty}</div>
+            </div>
+            <div class="cart-item-right">
+              <div class="cart-item-price">&#163;${(item.price * item.qty).toFixed(2)}</div>
+              <button class="cart-item-remove" onclick="removeFromCart('${name}')">&#128465;</button>
+            </div>`;
+          container.appendChild(div);
+        });
+        footerEl.style.display = 'block';
+        priceEl.textContent = '&#163;' + totalPrice.toFixed(2);
+      }
+    }
+
+    function removeFromCart(name) {
+      delete cart[name];
+      // Unselect the menu item
+      document.querySelectorAll('.menu-interactive.selected').forEach(el => {
+        if (el.dataset.name === name) {
+          el.classList.remove('selected');
+          el.querySelector('.qty-num').textContent = '1';
+        }
+      });
+      updateCart();
+      showToast('Removed ' + name);
+    }
+
+    function openCart() {
+      document.getElementById('cart-overlay').classList.add('active');
+      document.getElementById('cart-panel').classList.add('active');
+    }
+
+    function closeCart() {
+      document.getElementById('cart-overlay').classList.remove('active');
+      document.getElementById('cart-panel').classList.remove('active');
+    }
+
+    // === CHECKOUT VIA WHATSAPP ===
+    function checkoutOrder() {
+      const items = Object.entries(cart);
+      if (items.length === 0) return;
+      const total = items.reduce((s, [, v]) => s + v.price * v.qty, 0);
+      let msg = "Hey NAJA Kitchen! I'd like to order:\n\n";
+      items.forEach(([name, item]) => {
+        msg += `- ${name} x${item.qty}  (${'\u00a3'}${(item.price * item.qty).toFixed(2)})\n`;
+      });
+      msg += `\nTotal: \u00a3${total.toFixed(2)}\n\nThanks!`;
+      const phone = '442079481234';
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // === RESERVATION ===
+    function openReservation() {
+      // Set min date to today
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('res-date').setAttribute('min', today);
+      document.getElementById('reservation-modal').classList.add('active');
+    }
+
+    function closeReservation() {
+      document.getElementById('reservation-modal').classList.remove('active');
+    }
+
+    function submitReservation(e) {
+      e.preventDefault();
+      const fname = document.getElementById('res-fname').value;
+      const date = document.getElementById('res-date').value;
+      const time = document.getElementById('res-time').value;
+      const guests = document.getElementById('res-guests').value;
+
+      // Format date nicely
+      const dateObj = new Date(date + 'T00:00:00');
+      const formatted = dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+
+      document.getElementById('confirm-text').innerHTML = `
+        <strong>${fname}</strong>, your table is booked!<br>
+        <span style="color: var(--gold);">${formatted}</span> at <span style="color: var(--gold);">${time}</span><br>
+        <span style="color: var(--gray);">${guests}</span><br><br>
+        We've sent a confirmation to your email.
+      `;
+      closeReservation();
+      document.getElementById('reservation-confirm').classList.add('active');
+
+      // Reset form
+      e.target.reset();
+    }
+
+    function closeConfirm() {
+      document.getElementById('reservation-confirm').classList.remove('active');
+    }
+
+    // Close modals on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeReservation();
+        closeConfirm();
+        closeCart();
+      }
+    });
   </script>
 
 </body>
